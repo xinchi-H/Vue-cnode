@@ -36,7 +36,7 @@
    * 
    */
   export default {
-    name: '',
+    name: 'TabHeader',
   };
 </script>
 

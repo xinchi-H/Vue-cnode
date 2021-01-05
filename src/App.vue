@@ -1,16 +1,19 @@
 <template>
   <div id="app">
-    <Header/>
+    <tab-header/>
+    <post-list/>
   </div>
 </template>
 
 <script>
-import Header from './components/Header'
+import TabHeader from './components/tab-header.vue'
+import PostList from './components/post-list.vue'
 
 export default {
   name: 'App',
   components: {
-    Header,
+    TabHeader,
+    PostList,
   }
 }
 </script>
