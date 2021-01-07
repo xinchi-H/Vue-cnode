@@ -22,18 +22,24 @@
             </span>
             /{{post.visit_count}}
           </span>
-          <span
-            :class="[{
+          <span :class="[{
               put_good: (post.good === true),
               put_top: (post.top === true),
               'topiclist-tab': (post.good !== true && post.top !== true),
-             }]"
-          >
+             }]">
             <span>
               {{ post | tabFormatter }}
             </span>
           </span>
-          <span>{{ post.title }}</span>
+          <router-link :to="{
+              name:'post_content',
+              params:{
+                id:post.id,
+              }
+            }"
+          >
+            <span>{{ post.title }}</span>
+          </router-link>
           <span class="last_reply">
             {{ post.last_reply_at | formatDate }}
           </span>
@@ -61,7 +67,7 @@
     methods: {
       getData() {
         this.isLoading = true;
-        this.$http.get(' http://mock.hunger-valley.com/cnode/api/v1/topics', {
+        this.$http.get('http://mock.hunger-valley.com/cnode/api/v1/topics', {
           page: 1,
           limit: 20,
         }).then((res) => {
@@ -134,7 +140,8 @@
     font-size: 14px;
   }
 
-  .put_good, .put_top {
+  .put_good,
+  .put_top {
     background: #80bd01;
     padding: 2px 4px;
     border-radius: 3px;

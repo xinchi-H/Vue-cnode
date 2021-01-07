@@ -2,20 +2,18 @@
   <div id="app">
     <tab-header />
     <div class="main">
-      <post-list />
+      <router-view name="main"></router-view>
     </div>
   </div>
 </template>
 
 <script>
   import TabHeader from './components/tab-header.vue'
-  import PostList from './components/post-list.vue'
 
   export default {
     name: 'App',
     components: {
       TabHeader,
-      PostList,
     }
   }
 </script>
