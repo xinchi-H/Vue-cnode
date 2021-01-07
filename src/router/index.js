@@ -6,20 +6,26 @@ import Article from '../components/article.vue'
 Vue.use(Router)
 
 export default new Router({
-  routes: [
-    {
+  routes: [{
       name: 'root',
       path: '/',
       components: {
-        main: PostList,        
+        main: PostList,
       }
     },
-     {
-       name: 'post_content',
-       path: '/topic/:id',
-       components: {
-         main: Article,
-       }
-     }
+    {
+      name: 'post_content',
+      path: '/topic/:id',
+      components: {
+        main: Article,
+      }
+    },
+    {
+      name: 'user_info',
+      path: '/userinfo/:name',
+      components: {
+        main: Article,
+      }
+    }
   ]
 })
