@@ -59,6 +59,12 @@
         post: {},
       };
     },
+    // 当路由只改变了参数时，用watch来监听改变并刷新页面
+    watch: {
+      '$route'() {
+        this.getArticleData();
+      }
+    },
     beforeMount() {
       this.getArticleData();
     },
