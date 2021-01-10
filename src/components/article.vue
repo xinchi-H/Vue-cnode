@@ -50,9 +50,7 @@
 </template>
 
 <script>
-  /**
-   * 
-   */
+
   export default {
     name: 'Ariticle',
     data() {

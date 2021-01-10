@@ -35,6 +35,7 @@
               name:'post_content',
               params:{
                 id:post.id,
+                name:post.author.loginname,
               }
             }"
           >
@@ -50,9 +51,7 @@
 </template>
 
 <script>
-  /**
-   * 
-   */
+
   export default {
     name: 'PostList',
     data() {
