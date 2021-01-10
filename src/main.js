@@ -9,15 +9,6 @@ import VueRouter from 'vue-router'
 Vue.prototype.$http = Axios
 Vue.config.productionTip = false
 
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  components: {
-    App
-  },
-  template: '<App/>'
-})
 Vue.filter('formatDate', (str) => {
   if (!str) return ''
   var date = new Date(str)
@@ -52,4 +43,14 @@ Vue.filter('tabFormatter', (post) => {
   } else {
     return '招聘'
   }
+})
+
+/* eslint-disable no-new */
+new Vue({
+  el: '#app',
+  router,
+  components: {
+    App
+  },
+  template: '<App/>'
 })
