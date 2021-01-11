@@ -46,7 +46,7 @@
           </span>
         </li>
         <li>
-          <pagination />
+          <pagination @loadList="loadList"/>
         </li>
       </ul>
     </div>
@@ -68,23 +68,29 @@ import Pagination from './pagination.vue';
       }
     },
     beforeMount() {
+      // isLoading=true放在getData中会导致v-if重新渲染节点，造成页面闪动;
+      this.isLoading = true;
       this.getData();
     },
     methods: {
-      getData() {
-        this.isLoading = true;
+      getData(page = 1) {
         this.$http.get('http://mock.hunger-valley.com/cnode/api/v1/topics', {
-          page: 1,
-          limit: 20,
+          params: {
+            page,
+            limit: 20,
+          }
         }).then((res) => {
-          console.log(res);
           this.posts = res.data.data
         }).catch((err) => {
           console.log(err);
         }).finally(() => {
           this.isLoading = false;
+          console.log(page);
         })
       },
+      loadList(page) {
+        this.getData(page);
+      }
     }
   };
 </script>

@@ -3,6 +3,12 @@
     <button @click="changeBtn">首页</button>
     <button @click="changeBtn">上一页</button>
     <button
+      v-if="this.currentPage > 4" 
+      class="pagebtn"
+    >
+      ......
+    </button>
+    <button
       v-for="(btn, index) in pageBtns"
       :key="index"
       @click="changeBtn(btn)"
@@ -30,15 +36,39 @@
     },
     methods: {
       changeBtn(page) {
-        this.currentPage = page;
-        if(page === this.pageBtns[4]) {
-          this.pageBtns.shift();
-          this.pageBtns.splice(4,0,this.pageBtns[3] + 1);
-        } else if(
-           page === this.pageBtns[0] && this.pageBtns[0] !== 1
-        ) {
-          this.pageBtns.splice(4,1);
-          this.pageBtns.unshift(this.pageBtns[0] - 1);
+        if(typeof page !== 'number') {
+          switch (page.target.innerText) {
+            case '上一页':
+              if(this.currentPage === 1){
+                break;
+              }
+              this.changeBtn(this.currentPage - 1)
+              break;
+            case '下一页':
+              this.changeBtn(this.currentPage + 1)
+              break;
+            case '首页':
+              this.pagebtns = [1, 2, 3, 4, 5, '......'];
+              this.changeBtn(1);
+              break;
+            default:
+              break;
+          }
+          return;
+        }
+        if(typeof page === 'number') {
+          this.currentPage = page;
+          if(page === this.pageBtns[4]) {
+            this.pageBtns.shift();
+            this.pageBtns.splice(4,0,this.pageBtns[3] + 1);
+          } else if(
+             page === this.pageBtns[0] && this.pageBtns[0] !== 1
+          ) {
+            this.pageBtns.splice(4,1);
+            this.pageBtns.unshift(this.pageBtns[0] - 1);
+          }
+          console.log(this.currentPage);
+          this.$emit('loadList', this.currentPage);
         }
       }
     }
