@@ -45,15 +45,22 @@
             {{ post.last_reply_at | formatDate }}
           </span>
         </li>
+        <li>
+          <pagination />
+        </li>
       </ul>
     </div>
   </div>
 </template>
 
 <script>
+import Pagination from './pagination.vue';
 
   export default {
     name: 'PostList',
+    components: {
+      Pagination,
+    },
     data() {
       return {
         isLoading: false,
