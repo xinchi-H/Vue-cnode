@@ -85,7 +85,6 @@ import Pagination from './pagination.vue';
           console.log(err);
         }).finally(() => {
           this.isLoading = false;
-          console.log(page);
         })
       },
       loadList(page) {

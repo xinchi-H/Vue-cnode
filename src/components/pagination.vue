@@ -67,7 +67,6 @@
             this.pageBtns.splice(4,1);
             this.pageBtns.unshift(this.pageBtns[0] - 1);
           }
-          console.log(this.currentPage);
           this.$emit('loadList', this.currentPage);
         }
       }
